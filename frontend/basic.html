@@ -4,12 +4,16 @@
 <body ng-controller="MainCtrl as ctrl">
   {{ctrl.message}} AngularJS.
   
-
-  <button ng-click="ctrl.changeMessage()">
+  <button ng-click="ctrl.saveUser()">
     Submit
   </button>
   
   {{ctrl.success}}
+  
+  </p>
+  <button ng-click="ctrl.loadUsers()">
+    Load Users
+  </button>
 <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
 </script>
@@ -19,13 +23,23 @@
       var self = this;
       self.message= 'Click here to add another user ';
       
-      self.changeMessage = function() {
-        $http.get('http://127.0.0.1:8081/').then(function(response) {
+      self.saveUser = function() {
+        $http.put('http://localhost:8081/').then(function(response) {
         	self.success = 'Woop woop';
         }, function(errResponse) {
         	self.success = errResponse;
         })
       };
+      
+      self.loadUsers = function() {
+        $http.get('http://localhost:8082/').then(function(response) {
+        	self.success = 'Woop woop';
+        }, function(errResponse) {
+        	self.success = errResponse;
+        })
+      };
+      	
+      
   }]);
 </script>
 </body>
