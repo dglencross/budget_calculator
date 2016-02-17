@@ -1,0 +1,1 @@
+mongod --port 30005 --dbpath db_files --smallfiles --oplogSize 128 --fork --logpath logs/mongodb.log
