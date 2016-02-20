@@ -2,17 +2,35 @@
 <html ng-app="basicApp">
 <head><title>Basic App</title></head>
 <body ng-controller="MainCtrl as ctrl">
-  {{ctrl.message}} AngularJS.
+  {{ctrl.message}}
+  </p>
   
+<ng-form name="profile">
+      <input type="text"
+             name="firstName"
+             ng-model="ctrl.firstName"
+             placeholder="First Name"
+             required>
+      <input type="text"
+             name="middleName"
+             placeholder="Middle Name"
+             ng-model="ctrl.middleName">
+      <input type="text"
+             name="lastName"
+             placeholder="Last Name"
+             ng-model="ctrl.lastName"
+             required>
+    </ng-form>
+
   <button ng-click="ctrl.saveUser()">
-    Submit
+    Save
   </button>
   
   {{ctrl.success}}
   
   </p>
   <button ng-click="ctrl.loadUsers()">
-    Load
+    Load all data
   </button>
 
   </p>
@@ -24,12 +42,21 @@
 </script>
 <script type="text/javascript">
   angular.module('basicApp', [])
-    .controller('MainCtrl', ['$http', function($http) {
+    .controller('MainCtrl', ['$http', function($http, $scope) {
       var self = this;
       self.message= 'Click here to add another user ';
+      self.firstName = '';
+      //self.middleName = '';
       
       self.saveUser = function() {
-        $http.put('http://localhost:3000/saveTest').then(function(response) {
+
+            var data = {
+                firstName : self.firstName,
+                middleName : self.middleName,
+                lastName : self.lastName
+            };
+
+        $http.put('http://localhost:3000/saveTest?' + data).then(function(response) {
         	self.success = 'Woop woop';
         }, function(errResponse) {
         	self.success = errResponse;
