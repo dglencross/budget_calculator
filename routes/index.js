@@ -17,11 +17,6 @@ router.get('/helloworld', function(req, res) {
     res.render('helloworld', { title: 'Hello, World!' });
 });
 
-/* GET Basic page. */
-router.get('/basic', function(req, res) {
-    res.render('basic', { title: 'basic website!' });
-});
-
 router.get('/loadTest', function(req, res) {
     //var db = req.db;
 
@@ -29,8 +24,8 @@ router.get('/loadTest', function(req, res) {
 	Account.find({}, function(err, users) {
 	  if (err) throw err;
 
-	  // object of all the users
-	  return users;
+	  res.write(JSON.stringify(users));
+	  res.end();
 	});
 });
 
