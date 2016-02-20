@@ -12,7 +12,7 @@
   
   </p>
   <button ng-click="ctrl.loadUsers()">
-    Load Users
+    Load
   </button>
 <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
@@ -24,7 +24,7 @@
       self.message= 'Click here to add another user ';
       
       self.saveUser = function() {
-        $http.put('http://localhost:8081/').then(function(response) {
+        $http.put('http://localhost:3000/saveTest').then(function(response) {
         	self.success = 'Woop woop';
         }, function(errResponse) {
         	self.success = errResponse;
@@ -32,12 +32,15 @@
       };
       
       self.loadUsers = function() {
-        $http.get('http://localhost:8082/').then(function(response) {
+        $http.get('http://localhost:3000/loadTest').then(function(response) {
         	self.success = 'Woop woop';
+          console.log(response.users);
         }, function(errResponse) {
         	self.success = errResponse;
+          console.log(response.users);
         })
       };
+      
       	
       
   }]);
