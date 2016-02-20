@@ -7,5 +7,9 @@ AngularJs -> NodeJS -> MongoDB
 
 Install:
 
-MongoDB
-Node
+npm install
+
+Run:
+
+bash launch_mongo.command
+npm start
