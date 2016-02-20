@@ -1,3 +1,4 @@
 db_files/
 node_modules/
 logs/
+.log
