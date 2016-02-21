@@ -35,7 +35,9 @@
 
   </p>
   <div ng-repeat="note in ctrl.notes">
-    <span class="label"> {{note.name}}</span>
+    <span class="label"> {{note.firstName}}</span>
+    <span class="label"> {{note.middleName}}</span>
+    <span class="label"> {{note.lastName}}</span>
   </div>
 <script
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
@@ -45,8 +47,6 @@
     .controller('MainCtrl', ['$http', function($http, $scope) {
       var self = this;
       self.message= 'Click here to add another user ';
-      self.firstName = '';
-      //self.middleName = '';
       
       self.saveUser = function() {
 
@@ -56,7 +56,7 @@
                 lastName : self.lastName
             };
 
-        $http.put('http://localhost:3000/saveTest?' + data).then(function(response) {
+        $http.put('http://localhost:3000/saveTest?firstName=' + self.firstName + '&middleName=' + self.middleName + '&lastName=' + self.lastName).then(function(response) {
         	self.success = 'Woop woop';
         }, function(errResponse) {
         	self.success = errResponse;
